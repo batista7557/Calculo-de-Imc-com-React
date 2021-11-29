@@ -38,17 +38,18 @@ export default function Form(){
             setMensageImc('Seu IMC é igual:')
             setTextButton('Calcular novamente')
             setErrorMessage(null)
-            return
+        }else{
+            verificationImc()
+            setImc(null)
+            setTextButton('Calcular')
+            setMensageImc('Preencha o peso e a altura')
         }
-        verificationImc()
-        setImc(null)
-        setTextButton('Calcular')
-        setMensageImc('Preencha o peso e a altura')
     }
 
     return(
-        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
-            <View style={styles.form}>
+        <View style={styles.formContext}>
+            { imc == null ? 
+            <Pressable onPress={Keyboard.dismiss} style={styles.form}>
                 <Text style={styles.formLabel}>Altura</Text>
                 <TextInput
                 style={styles.input}
@@ -72,8 +73,19 @@ export default function Form(){
             }}> 
             <Text style={styles.textButtonCalculator}>{textButton}</Text>
             </TouchableOpacity>
+            </Pressable>
+            : 
+            <View style={styles.exhibitionResultImc}>
+                <ResultImc mensageResultImc={mensageImc} resultImc={imc}/>
+                <TouchableOpacity 
+                    style={styles.buttonCalculator} 
+                    onPress={()=>{
+                        validationImc()
+                    }}> 
+                    <Text style={styles.textButtonCalculator}>{textButton}</Text>
+            </TouchableOpacity>
             </View>
-            <ResultImc mensageResultImc={mensageImc} resultImc={imc}/>
-        </Pressable>
+            }
+        </View>
     )
 }
