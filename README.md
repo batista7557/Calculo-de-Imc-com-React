@@ -3,4 +3,4 @@
 - Tratamento de erros;
 - Uso da API Vibration para vibrar quando ocorrer erros;
 - Uso da API Share para compartilhar resultado em tempo real via redes sociais como WhatsApp, Facebook, Telegram, etc;
-
+- Uso de FlatList para mostrar resultados em ordem no formato de lista.
